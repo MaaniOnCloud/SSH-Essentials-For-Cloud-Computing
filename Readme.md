@@ -26,9 +26,9 @@ And once you are connected, you can run a command like:
 
 >xclac - for  graphical calculator
 <br>
-xclock - for a clock
+>xclock - for a clock
 <br>
-gedit - for a text editor
+>gedit - for a text editor
 
 In order for this to work, your server must have X11 forwarding enabled, which I will cover in the next coming section. Your client machine must have X11 server running. If you are on Linux, you are good. If you are on Mac, you would need something like **XQuartz**. If you are on Windows, you would need something like **Cygwin** or **Xming**.I personally don't use this feature at all. But its good to know.
 
