@@ -25,18 +25,21 @@ While establishing the connection, you the -X option like below:
 And once you are connected, you can run a command like:
 
 >xclac - for  graphical calculator
->xclock - for a clock
->gedit - for a text editor
+<br>
+xclock - for a clock
+<br>
+gedit - for a text editor
 
 In order for this to work, your server must have X11 forwarding enabled, which I will cover in the next coming section. Your client machine must have X11 server running. If you are on Linux, you are good. If you are on Mac, you would need something like **XQuartz**. If you are on Windows, you would need something like **Cygwin** or **Xming**.I personally don't use this feature at all. But its good to know.
 
 ###### - Connection and Execution of Command(s)
 If you want to just execute a quick command or commands but dont want to have a shell session open, you can use the following command:
-> ssh user@hostname [command]
-ssh user@hostname uptime
->
+> `ssh user@hostname [command]`
+<br>
+> `ssh user@hostname uptime`
+
 By using double quotes and semicolon you can execute multiple commands. Here is an example:
-> ssh user@hostname "uptime; ls -l; pwd; whoami; hostname"
+> `ssh user@hostname "uptime; ls -l; pwd; whoami; hostname"`
 
 ###### - Connection with a Key  
 Usually we generate a key pair, keep the private key with us and the public key on our server. However sometimes, eg: AWS, when you want to connect to your ec2 instance, you need to provide your private key to establish the connection.
