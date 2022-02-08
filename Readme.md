@@ -57,3 +57,16 @@ If its not running, you can start it by: `eval "$(ssh-agent -s)"`
 Then you can add your key to the ssh agent by running: 
 `ssh-add path_to_your_private_key`
 
+##### - Creating a SSH Config File
+If you are sick of typing all your options and the name of the server, you can create a config file and store all your options in it.
+You can create a config file in the .ssh folder.
+Eg:
+```bash
+Host mail_server
+    Hostname 192.168.229.135
+    User your_username
+    Port 8455
+    IdentityFile path_to_your_private_key
+```
+Once you have your config file ready, you can simply establish a ssh connection by typing `ssh host` or in our case `ssh mail_server`.
+
