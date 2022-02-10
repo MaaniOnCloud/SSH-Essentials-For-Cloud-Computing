@@ -87,7 +87,7 @@ In the above example, we have used rsa, dsa, ecdsa and ed2551 alogrithms respect
 
 Default location of the keys is in the ~/.ssh folder on Linux and Mac. On Windows, it is in the C:\Users\username\.ssh folder.
 
-#### - Copying Public Keys to the Server
+##### - Copying Public Keys to the Server
 Once you are done generating a key pair, your public key which called **id_rsa.pub** will be stored in the ~/.ssh folder of the server for the authentication.
 You can copy the public key to the server by running the following command:
 > `ssh-copy-id ~/.ssh/id_rsa.pub user@hostname`
@@ -97,3 +97,53 @@ Let's say you can't copy the public key to the server using the above command. Y
 
 >`cat ~/.ssh/id_rsa.pub | ssh user@hostname 'cat >> ~/.ssh/authorized_keys'`
 
+### 3. Server & Security
+
+##### - SSH Server
+
+If your server is running linux, its most likely that its already running the OpenSSH server. If not, you can install by running the following command:
+> `sudo apt install openssh-server`
+To start the server, run the following command:
+> `sudo systemctl sshd start`
+To stop the server, run the following command:
+> `sudo systemctl sshd stop`
+To restart the server, run the following command:
+> `sudo systemctl sshd restart`
+To check if the server is running, run the following command:
+> `systemctl status sshd`
+To start the server at boot, run the following command:
+> `sudo systemctl enable sshd`
+
+##### - SSH Server Security
+
+It is important to keep the SSH server secure. The default configuration can be a bit insecure. And I think we should change a few settings to make things more secure. The sshd config file is located at `/etc/ssh/sshd_config`.
+Change SSH Port from 22 to a different port number.
+Disable root login
+Disable password authentication
+Whitelist Users & Groups
+
+##### - SSH Tunneling or SSH Forwarding
+
+SSH Tunneling is used to tunnel other traffic through the SSH server.
+We can SSH Forwarding in 2 ways:
+
+> `ssh -L myLocalPort:remoteHost:remotePort user@hostname`
+
+Eg: My Server has Apache Web Server running on port 80 and I want to access it from my local machine.
+
+>`ssh -L 6996:remoteHost:80 user@hostname`
+
+in the above example, we are tunneling the port 80 of my server to the port 6996 of my local machine.
+
+Second way is to use the ssh -R option.
+
+> `ssh -R remotePort:myLocalHost:myLocalPort user@hostname`
+
+Eg: myLocalHost is running a nginx server on port 80 and I want my server to be able to access it.
+
+> `ssh -R 6666:myLocalHost:80 user@hostname`
+
+in the above example, we are tunneling the port 80 of my local machine to the port 6666 of my server.
+
+I would recommend watching my tutorial on SSH Tunneling.
+[![SSH Tunneling](https://img.youtube.com/vi/n4B8nzUvpFQ/maxresdefault.jpg)](https://www.youtube.com/watch?v=n4B8nzUvpFQ)
