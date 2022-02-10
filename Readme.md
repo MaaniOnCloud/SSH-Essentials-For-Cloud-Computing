@@ -70,3 +70,30 @@ Host mail_server
 ```
 Once you have your config file ready, you can simply establish a ssh connection by typing `ssh host` or in our case `ssh mail_server`.
 
+### 2. Generating & Managing SSH Keys
+
+##### - Generating SSH Keys
+Usually when you establish a ssh connection, it will ask you for your password. But passwords are not the best security measure. That is why SSH key pairs are used. You can generate the key pair by running the following command:
+`ssh-keygen`
+And it will generate a private key and a public key. And as the name suggests, **Private Key** is to be kept with you and **Public Key** is to be stored on the server.
+You can also generate key pairs with different algorithms, and lenghts. And for that you need to specify the algorithm and the length using the -t and -b options.
+```bash
+ssh-keygen -t rsa -b 2048
+ssh-keygen -t dsa -b 4096
+ssh-keygen -t ecdsa -b 3072
+ssh-keygen -t ed25519 
+```
+In the above example, we have used rsa, dsa, ecdsa and ed2551 alogrithms respectively and for each of them we have used a key length of 2048, 4096, 3072 and default respectively.
+
+Default location of the keys is in the ~/.ssh folder on Linux and Mac. On Windows, it is in the C:\Users\username\.ssh folder.
+
+##### - Copying Public Keys to the Server
+Once you are done generating a key pair, your public key which called **id_rsa.pub** will be stored in the ~/.ssh folder of the server for the authentication.
+You can copy the public key to the server by running the following command:
+> `ssh-copy-id ~/.ssh/id_rsa.pub user@hostname`
+
+This command will copy the contents of your public key to the ~/.ssh folder of the server in a file called authorized_keys.
+Let's say you can't copy the public key to the server using the above command. You can do it manually by running the following command:
+
+>`cat ~/.ssh/id_rsa.pub | ssh user@hostname 'cat >> ~/.ssh/authorized_keys'`
+
