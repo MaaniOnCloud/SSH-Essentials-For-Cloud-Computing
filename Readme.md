@@ -72,7 +72,7 @@ Once you have your config file ready, you can simply establish a ssh connection 
 
 ### 2. Generating & Managing SSH Keys
 
-##### - Generating SSH Keys
+#### - Generating SSH Keys
 Usually when you establish a ssh connection, it will ask you for your password. But passwords are not the best security measure. That is why SSH key pairs are used. You can generate the key pair by running the following command:
 `ssh-keygen`
 And it will generate a private key and a public key. And as the name suggests, **Private Key** is to be kept with you and **Public Key** is to be stored on the server.
@@ -87,7 +87,7 @@ In the above example, we have used rsa, dsa, ecdsa and ed2551 alogrithms respect
 
 Default location of the keys is in the ~/.ssh folder on Linux and Mac. On Windows, it is in the C:\Users\username\.ssh folder.
 
-##### - Copying Public Keys to the Server
+#### - Copying Public Keys to the Server
 Once you are done generating a key pair, your public key which called **id_rsa.pub** will be stored in the ~/.ssh folder of the server for the authentication.
 You can copy the public key to the server by running the following command:
 > `ssh-copy-id ~/.ssh/id_rsa.pub user@hostname`
