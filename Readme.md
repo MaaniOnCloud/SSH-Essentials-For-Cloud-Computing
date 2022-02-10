@@ -122,7 +122,7 @@ Disable root login
 Disable password authentication
 Whitelist Users & Groups
 
-##### - SSH Tunneling or SSH Forwarding
+### 4. SSH Tunneling or SSH Forwarding
 
 SSH Tunneling is used to tunnel other traffic through the SSH server.
 We can SSH Forwarding in 2 ways:
